@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    mc:Ignorable="d"
+    x:Class="CollectionViewTest.Views.MainPage">
+    <StackLayout>
+        <CollectionView
+            x:Name="_collectionView"
+            ItemsSource="{Binding Orders}"
+            IsGrouped="True"
+            Margin="2">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout
+                    Orientation="Vertical"
+                    ItemSpacing="5" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.GroupHeaderTemplate>
+                <DataTemplate>
+                    <Label
+                        Margin="3"
+                        Text="{Binding Name}"
+                        VerticalTextAlignment="Center"
+                        HorizontalTextAlignment="Center" />
+                </DataTemplate>
+            </CollectionView.GroupHeaderTemplate>
+            <CollectionView.GroupFooterTemplate>
+                <DataTemplate>
+                    <StackLayout />
+                </DataTemplate>
+            </CollectionView.GroupFooterTemplate>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        Padding="5"
+                        HeightRequest="100"
+                        Orientation="Horizontal"
+                        Spacing="0">
+                        <yummy:PancakeView
+                            CornerRadius="10"
+                            BackgroundColor="#484848"
+                            HasShadow="False"
+                            Padding="0"
+                            Margin="0"
+                            VerticalOptions="FillAndExpand"
+                            HorizontalOptions="FillAndExpand">
+                            <StackLayout
+                                Orientation="Horizontal">
+                                <BoxView
+                                    WidthRequest="10"
+                                    BackgroundColor="{Binding StatusColor}" />
+                                <StackLayout
+                                    HorizontalOptions="FillAndExpand"
+                                    VerticalOptions="Fill"
+                                    Margin="0"
+                                    Padding="0"
+                                    Spacing="0"
+                                    Orientation="Horizontal">
+                                    <StackLayout
+                                        VerticalOptions="Center">
+                                        <Label
+                                            WidthRequest="70"
+                                            Text="{Binding OrderType}"
+                                            HorizontalOptions="Center"
+                                            HorizontalTextAlignment="Center"
+                                            LineBreakMode="WordWrap" />
+                                    </StackLayout>
+                                    <Grid
+                                        HorizontalOptions="FillAndExpand"
+                                        VerticalOptions="FillAndExpand"
+                                        Padding="5">
+                                        <Label
+                                            HorizontalOptions="CenterAndExpand"
+                                            FontAttributes="Italic"
+                                            IsVisible="{Binding HasCode}"
+                                            Style="{DynamicResource WhiteSmallLabel}">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span
+                                                        Text="OrderId" />
+                                                    <Span
+                                                        Text=": " />
+                                                    <Span
+                                                        Text="{Binding Code}" />
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                        </Label>
+                                        <StackLayout
+                                            Grid.Row="1"
+                                            HorizontalOptions="Center"
+                                            Orientation="Horizontal">
+                                            <Label
+                                                Text="{Binding DayNumberAndMonthName}"
+                                                VerticalTextAlignment="End" />
+                                            <Label
+                                                Text="{Binding DayName}"
+                                                Style="{DynamicResource WhiteMediumLabel}"
+                                                VerticalTextAlignment="End" />
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="2"
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="Center"
+                                            VerticalOptions="End">
+                                            <Label
+                                                Text="Status"
+                                                Style="{DynamicResource GrayMediumLabel}"
+                                                LineBreakMode="TailTruncation" />
+                                            <Label
+                                                Text="{Binding StatusDescription}"
+                                                Style="{DynamicResource WhiteMediumLabel}"
+                                                LineBreakMode="TailTruncation" />
+                                        </StackLayout>
+                                        <StackLayout
+                                            Grid.Row="3"
+                                            Orientation="Horizontal"
+                                            HorizontalOptions="End"
+                                            IsVisible="{Binding ShowTotalAmounts}">
+                                            <Label
+                                                Style="{DynamicResource WhiteMediumLabel}"
+                                                HorizontalTextAlignment="End"
+                                                LineBreakMode="TailTruncation">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="{Binding TotalAmounts, StringFormat='{0:N2}'}" />
+                                                        <Span
+                                                            Text=" " />
+                                                        <Span
+                                                            Text="{Binding CurrencySymbol}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
+
+                                    <BoxView
+                                        Style="{DynamicResource OrderCardVerticalLineSeparator}" />
+
+                                    <StackLayout
+                                        VerticalOptions="FillAndExpand">
+                                        <StackLayout
+                                            IsEnabled="{Binding IsRatingEnabled}"
+                                            BackgroundColor="{DynamicResource Key=Transparent}"
+                                            VerticalOptions="CenterAndExpand">
+                                        </StackLayout>
+                                        <BoxView
+                                            Style="{DynamicResource OrderCardHorizontalLineSeparator}" />
+                                        <StackLayout
+                                            IsEnabled="{Binding DetailIsEnabled}"
+                                            BackgroundColor="{DynamicResource Key=Transparent}"
+                                            VerticalOptions="CenterAndExpand">
+                                        </StackLayout>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
+</ContentPage>

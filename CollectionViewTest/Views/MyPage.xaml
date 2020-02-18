@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="CollectionViewTest.Views.MyPage">
+    <ContentPage.Content>
+
+        <CollectionView
+            ItemsSource="{Binding MenuItems}"
+            Margin="10">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout
+                    Orientation="Vertical"
+                    HorizontalItemSpacing="10"
+                    Span="2">
+                </GridItemsLayout>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame
+                        Margin="20"
+                        BackgroundColor="Salmon"
+                        HasShadow="False"
+                        CornerRadius="5">
+                        <StackLayout>
+                            <Label
+                                Text="{Binding Title}"
+                                HorizontalOptions="Center" />
+                        </StackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+    </ContentPage.Content>
+</ContentPage>
