@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     x:Class="CollectionViewTest.Views.MyPage">
     <ContentPage.Content>
-
         <CollectionView
             ItemsSource="{Binding MenuItems}"
             Margin="10">
@@ -12,13 +11,13 @@
                 <GridItemsLayout
                     Orientation="Vertical"
                     HorizontalItemSpacing="10"
+                    VerticalItemSpacing="10"
                     Span="2">
                 </GridItemsLayout>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Frame
-                        Margin="20"
                         BackgroundColor="Salmon"
                         HasShadow="False"
                         CornerRadius="5">

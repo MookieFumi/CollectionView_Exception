@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using CollectionViewTest.Converters;
 using CollectionViewTest.Model;
 using CollectionViewTest.Services;
 using CollectionViewTest.ViewModels.Base;
@@ -18,6 +19,7 @@ namespace CollectionViewTest.ViewModels
         {
             _ordersService = ordersService;
 
+            LoadDataCommand = new DelegateCommandAsync(LoadData);
             Orders = new ObservableCollection<GroupedOrder>();
         }
 
@@ -29,11 +31,25 @@ namespace CollectionViewTest.ViewModels
 
         public override async Task OnNavigatedImpl(INavigationParameters parameters)
         {
+            await LoadData();
+
+            await base.OnNavigatedImpl(parameters);
+        }
+
+        public DelegateCommandAsync LoadDataCommand { get; private set; }
+
+        private async Task LoadData()
+        {
+            await Task.Delay(99);
+
             Orders.Clear();
 
             try
             {
-                var orders = _ordersService.GetOrders();
+
+                var result = await _ordersService.GetOrders();
+
+                var orders = BackendToModelMapper.GetOrders(result, "€");
 
                 var todayOrders = new GroupedOrder("Today", orders
                     .Where(s => s.DisplayedInitialTime.Date.Equals(DateTime.Now.Date))
@@ -65,8 +81,6 @@ namespace CollectionViewTest.ViewModels
             {
 
             }
-
-            await base.OnNavigatedImpl(parameters);
         }
     }
 }

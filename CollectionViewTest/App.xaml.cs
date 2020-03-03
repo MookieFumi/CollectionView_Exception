@@ -12,7 +12,7 @@ namespace CollectionViewTest
         {
             InitializeComponent();
 
-            NavigationService.NavigateAsync($"{nameof(MyPage)}");
+            NavigationService.NavigateAsync($"{nameof(MainPage)}");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)

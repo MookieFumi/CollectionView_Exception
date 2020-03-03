@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CollectionViewTest.Model;
 
 namespace CollectionViewTest.Services
 {
     public interface IOrdersService
     {
-        IEnumerable<Order> GetOrders();
+        Task<IEnumerable<OrderDTO>> GetOrders();
     }
 }

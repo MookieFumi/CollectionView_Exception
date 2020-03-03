@@ -1,20 +1,648 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using CollectionViewTest.Model;
 
 namespace CollectionViewTest.Services
 {
     public class OrdersService : IOrdersService
     {
-        public IEnumerable<Order> GetOrders()
+        public async Task<IEnumerable<OrderDTO>> GetOrders()
         {
+            //await Task.Delay(99);
+
             var response = GetResponse();
 
-            return Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<Order>>(response);
+            return await Task.FromResult(Newtonsoft.Json.JsonConvert.DeserializeObject<IEnumerable<OrderDTO>>(response));
         }
 
         private string GetResponse()
         {
-            return @"[{""Id"":""76b7075b-48dd-11ea-bd0e-bdf2b9280aa2"",""Code"":""258468E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-technical-assistance.svg"",""Type"":3,""OrderType"":""Technical assistence"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T03:59:00+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T03:59:00+01:00"",""PlannedInitialTime"":""2020-02-06T04:00:00+01:00"",""PlannedFinalTime"":""2020-02-07T03:59:00+01:00"",""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""5ae2833c-4c20-11ea-bd0e-156a2b27a4ce"",""Code"":""259971E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-technical-assistance.svg"",""Type"":3,""OrderType"":""Technical assistence"",""DayNumberAndMonthName"":""10 February"",""DayName"":""Monday"",""DisplayedInitialTime"":""2020-02-10T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T03:59:00+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-10T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T03:59:00+01:00"",""PlannedInitialTime"":""2020-02-10T04:00:00+01:00"",""PlannedFinalTime"":""2020-02-11T03:59:00+01:00"",""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""32eb1408-4c21-11ea-bd0e-87fcb4d5ea79"",""Code"":""259972E"",""HasCode"":true,""StatusDescription"":""Done"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.47843137383461,""G"":0.80784314870834351,""B"":0.21960784494876862,""Hue"":0.25999999046325684,""Saturation"":0.6048387885093689,""Luminosity"":0.51372551918029785},""Image"":""resource://MyCash.Resources.Images.add-order-technical-assistance.svg"",""Type"":3,""OrderType"":""Technical assistence"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T20:25:01+01:00"",""DisplayedFinalTime"":""2020-02-11T20:25:29+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":true,""RatingReplaceStringMap"":{""#666666"":""#FFD102""},""RatingImage"":""resource://MyCash.Resources.Images.rate-1.svg"",""Rate"":1,""RateId"":""19f42741-4d8d-11ea-bfd8-03e5d2da4042"",""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T16:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T18:00:00+01:00"",""PlannedInitialTime"":""2020-02-11T16:00:00+01:00"",""PlannedFinalTime"":""2020-02-11T18:00:00+01:00"",""RealInitialTime"":""2020-02-11T20:25:01+01:00"",""RealFinalTime"":""2020-02-11T20:25:29+01:00""},{""Id"":""ac11ecb7-4cc7-11ea-bd0e-0d984f786080"",""Code"":""259477E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-12T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":12555.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T13:00:00+01:00"",""RequestedFinalTime"":""2020-02-12T18:00:00+01:00"",""PlannedInitialTime"":""2020-02-12T04:00:00+01:00"",""PlannedFinalTime"":""2020-02-12T04:00:00+01:00"",""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""b89db0bd-4d91-11ea-bd0e-b7984e6ce5d7"",""Code"":""260469E"",""HasCode"":true,""StatusDescription"":""On way"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.99607843160629272,""G"":0.90196079015731812,""B"":0.0,""Hue"":0.1509186327457428,""Saturation"":1.0,""Luminosity"":0.49803921580314636},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T17:49:57+01:00"",""DisplayedFinalTime"":""2020-02-12T20:05:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":160000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T14:00:00+01:00"",""RequestedFinalTime"":""2020-02-13T04:00:00+01:00"",""PlannedInitialTime"":""2020-02-12T20:00:00+01:00"",""PlannedFinalTime"":""2020-02-12T20:05:00+01:00"",""RealInitialTime"":""2020-02-12T17:49:57+01:00"",""RealFinalTime"":null},{""Id"":""89203c4c-4db2-11ea-bd0e-fd2d5fa0c190"",""Code"":""260472E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""13 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-13T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-13T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":58000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-13T16:00:00+01:00"",""RequestedFinalTime"":""2020-02-13T18:00:00+01:00"",""PlannedInitialTime"":""2020-02-13T04:00:00+01:00"",""PlannedFinalTime"":""2020-02-13T04:00:00+01:00"",""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""735aefa0-4d90-11ea-bd0e-b9b6a29a95ca"",""Code"":""260468E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""13 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-13T12:00:00+01:00"",""DisplayedFinalTime"":""2020-02-13T19:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":45000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-13T12:00:00+01:00"",""RequestedFinalTime"":""2020-02-13T19:00:00+01:00"",""PlannedInitialTime"":""2020-02-13T12:00:00+01:00"",""PlannedFinalTime"":""2020-02-13T19:00:00+01:00"",""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""c48f6774-4e3f-11ea-bd0e-cf9089c1abb3"",""Code"":""259484E"",""HasCode"":true,""StatusDescription"":""On way"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.99607843160629272,""G"":0.90196079015731812,""B"":0.0,""Hue"":0.1509186327457428,""Saturation"":1.0,""Luminosity"":0.49803921580314636},""Image"":""resource://MyCash.Resources.Images.add-order-supply.svg"",""Type"":4,""OrderType"":""Supply"",""DayNumberAndMonthName"":""13 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-13T14:19:17+01:00"",""DisplayedFinalTime"":""2020-02-13T14:00:00+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-13T14:02:00+01:00"",""RequestedFinalTime"":""2020-02-14T04:00:00+01:00"",""PlannedInitialTime"":""2020-02-13T12:00:00+01:00"",""PlannedFinalTime"":""2020-02-13T14:00:00+01:00"",""RealInitialTime"":""2020-02-13T14:19:17+01:00"",""RealFinalTime"":null},{""Id"":""3cb87723-48d4-11ea-bd0e-ed2d4cbaaca9"",""Code"":""257974E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T14:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T18:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":18000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T14:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T18:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""cb6838af-498e-11ea-bd0e-83a3f9ee4c43"",""Code"":""258469E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""10 February"",""DayName"":""Monday"",""DisplayedInitialTime"":""2020-02-10T20:00:00+01:00"",""DisplayedFinalTime"":""2020-02-10T23:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":500.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-10T20:00:00+01:00"",""RequestedFinalTime"":""2020-02-10T23:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":""70e1361c-4dad-11ea-bd0e-73f5ce60e5f2"",""Code"":""259483E"",""HasCode"":true,""StatusDescription"":""Received"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":0.7450980544090271,""G"":0.89803922176361084,""B"":0.92156863212585449,""Hue"":0.52222222089767456,""Saturation"":0.529411792755127,""Luminosity"":0.83333337306976318},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T21:00:00+01:00"",""DisplayedFinalTime"":""2020-02-12T23:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":8888.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":true,""DetailReplaceStringMap"":{""#666666"":""#FFD102""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T21:00:00+01:00"",""RequestedFinalTime"":""2020-02-12T23:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":5000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":151000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":200000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""13 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-13T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-13T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":220.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-13T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-13T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":425000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":2927.8,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":-1.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-technical-assistance.svg"",""Type"":3,""OrderType"":""Technical assistence"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-supply.svg"",""Type"":4,""OrderType"":""Supply"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":false,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":25000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-12T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-12T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-12T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-12T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":8000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":100000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":100000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""06 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-06T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-06T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":-1.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-06T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-06T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""07 February"",""DayName"":""Friday"",""DisplayedInitialTime"":""2020-02-07T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-07T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":20000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-07T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-07T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-delivery.svg"",""Type"":1,""OrderType"":""Delivery"",""DayNumberAndMonthName"":""10 February"",""DayName"":""Monday"",""DisplayedInitialTime"":""2020-02-10T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-10T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":10000.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-10T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-10T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""12 February"",""DayName"":""Wednesday"",""DisplayedInitialTime"":""2020-02-12T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-12T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-12T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-12T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""11 February"",""DayName"":""Tuesday"",""DisplayedInitialTime"":""2020-02-11T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-11T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-11T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-11T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null},{""Id"":null,""Code"":null,""HasCode"":false,""StatusDescription"":""Pending"",""StatusColor"":{""IsDefault"":false,""A"":1.0,""R"":1.0,""G"":0.64705884456634521,""B"":0.0,""Hue"":0.10784313827753067,""Saturation"":1.0,""Luminosity"":0.5},""Image"":""resource://MyCash.Resources.Images.add-order-pickup.svg"",""Type"":0,""OrderType"":""Pickup"",""DayNumberAndMonthName"":""13 February"",""DayName"":""Thursday"",""DisplayedInitialTime"":""2020-02-13T04:00:00+01:00"",""DisplayedFinalTime"":""2020-02-13T04:00:00+01:00"",""ShowTotalAmounts"":true,""TotalAmounts"":0.0,""CurrencySymbol"":""€"",""RatingIsEnabled"":false,""RatingReplaceStringMap"":{""#FFD102"":""#666666""},""RatingImage"":""resource://MyCash.Resources.Images.rate-0.svg"",""Rate"":0,""RateId"":null,""DetailIsEnabled"":false,""DetailReplaceStringMap"":{""#FFD102"":""#666666""},""DetailImage"":""resource://MyCash.Resources.Images.search.svg"",""RequestedInitialTime"":""2020-02-13T04:00:00+01:00"",""RequestedFinalTime"":""2020-02-13T04:00:00+01:00"",""PlannedInitialTime"":null,""PlannedFinalTime"":null,""RealInitialTime"":null,""RealFinalTime"":null}]";
+            return @"[
+    {
+        ""plannedFinalTime"": ""2020-03-02T16:50:00+01:00"",
+        ""plannedInitialTime"": ""2020-03-02T12:00:00+01:00"",
+        ""requestFinalTime"": ""2020-03-02T16:50:00+01:00"",
+        ""requestInitialTime"": ""2020-03-02T12:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""264470E"",
+        ""serviceId"": ""92866577-5a56-11ea-85e7-cbf81989b4a1"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": []
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-26T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T11:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263476E"",
+        ""serviceId"": ""9e19e0f6-571f-11ea-bd0e-dd7f14c69f10"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 8500.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-24T19:00:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-24T12:00:00+01:00"",
+        ""requestFinalTime"": ""2020-02-24T19:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-24T12:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""262973E"",
+        ""serviceId"": ""6a9a1369-5484-11ea-bd0e-05e33baa9a79"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 3210.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-25T11:30:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-25T11:25:00+01:00"",
+        ""requestFinalTime"": ""2020-02-26T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T11:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263474E"",
+        ""serviceId"": ""820217e8-571b-11ea-bd0e-6f02886daae1"",
+        ""serviceRate"": 4,
+        ""serviceRateId"": ""a13ee6d8-57c1-11ea-bfd8-cd720ed78b4f"",
+        ""serviceStatusCode"": ""DONE"",
+        ""serviceStatusDescription"": ""Done"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 4000.0
+            },
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 50.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-25T11:35:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-25T11:30:00+01:00"",
+        ""requestFinalTime"": ""2020-02-26T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T11:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263968E"",
+        ""serviceId"": ""69748a51-571b-11ea-bd0e-a1b7e1e4348e"",
+        ""serviceRate"": 4,
+        ""serviceRateId"": ""bb35a99b-57b3-11ea-bfd8-5b839e9b3ff2"",
+        ""serviceStatusCode"": ""DONE"",
+        ""serviceStatusDescription"": ""Done"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 7350.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-25T11:40:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-25T11:35:00+01:00"",
+        ""requestFinalTime"": ""2020-02-26T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T11:00:00+01:00"",
+        ""realInitialTime"": ""2020-02-24T20:55:59+01:00"",
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263475E"",
+        ""serviceId"": ""4f5b2c9a-571b-11ea-bd0e-5f75a2dfc995"",
+        ""serviceRate"": 5,
+        ""serviceRateId"": ""6954393a-5959-11ea-aded-ddb294d84a70"",
+        ""serviceStatusCode"": ""DONE"",
+        ""serviceStatusDescription"": ""Done"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 5670.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-25T19:00:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-25T12:00:00+01:00"",
+        ""requestFinalTime"": ""2020-02-25T19:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T12:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""262472E"",
+        ""serviceId"": ""637b32db-530d-11ea-bd0e-5f3733f1da9f"",
+        ""serviceRate"": 4,
+        ""serviceRateId"": ""cbd4f7fb-5312-11ea-bfd8-ebd3b689802b"",
+        ""serviceStatusCode"": ""DONE"",
+        ""serviceStatusDescription"": ""Done"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 88500.0
+            },
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 10678.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-26T19:00:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-26T12:00:00+01:00"",
+        ""requestFinalTime"": ""2020-02-26T19:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T12:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263469E"",
+        ""serviceId"": ""bb99223b-56f6-11ea-bd0e-e95fba635311"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 17500.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-28T19:00:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-28T12:00:00+01:00"",
+        ""requestFinalTime"": ""2020-02-28T19:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-28T12:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""262972E"",
+        ""serviceId"": ""16787293-5484-11ea-bd0e-512c566f7264"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 4340.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": ""2020-02-25T03:59:00+01:00"",
+        ""plannedInitialTime"": ""2020-02-24T04:00:00+01:00"",
+        ""requestFinalTime"": ""2020-02-25T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-24T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": ""263471E"",
+        ""serviceId"": ""f8826548-56f6-11ea-bd0e-e3bc161da254"",
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""RECEIVED"",
+        ""serviceStatusDescription"": ""Received"",
+        ""serviceType"": 3,
+        ""requestedAmounts"": []
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-26T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 4.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-29T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-28T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 888.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-27T00:50:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T21:50:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 1290000.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-29T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-28T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 0.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-26T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 8888.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-27T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 6000.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-29T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-28T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 0.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-27T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 40.25
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-26T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 4,
+        ""requestedAmounts"": []
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-25T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 50000.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-25T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 63900.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-27T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 34057.50
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-03-01T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-29T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 88977.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-03-01T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-29T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": []
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-27T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-26T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 1,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 49.6
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-24T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-24T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 25000.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-02-25T04:00:00+01:00"",
+        ""requestInitialTime"": ""2020-02-25T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 63520.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-03-01T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-29T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 987654.0
+            }
+        ]
+    },
+    {
+        ""plannedFinalTime"": null,
+        ""plannedInitialTime"": null,
+        ""requestFinalTime"": ""2020-03-01T03:59:00+01:00"",
+        ""requestInitialTime"": ""2020-02-29T04:00:00+01:00"",
+        ""realInitialTime"": null,
+        ""realFinalTime"": null,
+        ""serviceCode"": null,
+        ""serviceId"": null,
+        ""serviceRate"": 0,
+        ""serviceRateId"": null,
+        ""serviceStatusCode"": ""PENDING"",
+        ""serviceStatusDescription"": ""Pending"",
+        ""serviceType"": 0,
+        ""requestedAmounts"": [
+            {
+                ""currencyDescription"": ""Euros"",
+                ""currencyIsoCode"": ""EUR"",
+                ""totalAmount"": 0.0
+            }
+        ]
+    }
+]";
         }
     }
 }
